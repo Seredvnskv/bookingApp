@@ -4,7 +4,7 @@ import com.example.bookingapp.booking.Reservation;
 import com.example.bookingapp.room.Room;
 import com.example.bookingapp.user.User;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -14,8 +14,8 @@ public interface ReservationServiceInterface {
     Optional<Reservation> findById(UUID id);
     List<Reservation> findByUser(UUID id);
     List<Reservation> findByRoom(UUID id);
-    List<Reservation> findByDateRange(LocalDateTime start, LocalDateTime end);
-    Boolean isRoomAvailable(UUID id, LocalDateTime start, LocalDateTime end);
+    List<Reservation> findByDateRange(LocalDate start, LocalDate end);
+    Boolean isRoomAvailable(UUID id, LocalDate start, LocalDate end);
 
     void saveAll(List<Reservation> reservations);
     void deleteAll();

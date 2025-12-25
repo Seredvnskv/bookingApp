@@ -2,6 +2,7 @@ package com.example.bookingapp.user;
 
 import com.example.bookingapp.user.enums.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,14 +23,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Firstname can't be empty")
     private String firstName;
-    @Column(nullable = false)
+
+    @NotBlank(message = "Lastname can't be empty")
     private String lastName;
 
-    @Column(unique = true, nullable = false)
+    @NotBlank(message = "Email field can't be empty")
+    @Column(unique = true)
     private String email;
-    @Column(nullable = false)
+
+    @NotBlank(message = "Password field can't be empty")
     private String password;
 
     @Enumerated(EnumType.STRING)

@@ -5,6 +5,7 @@ import com.example.bookingapp.room.enums.RoomType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,20 +27,17 @@ public class Room {
     private UUID id;
 
     @NotBlank(message = "Room name is required")
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String name;
 
     @Min(value = 4, message = "Minimal number of people in room is 4")
-    @Column(nullable = false)
     private Integer capacity;
 
-    @NotBlank(message = "Room location is required")
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @NotNull(message = "Room location can't be null")
     private Location location;
 
-    @NotBlank(message = "Room type is required")
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @NotNull(message = "Room type can't be null")
     private RoomType type;
 }

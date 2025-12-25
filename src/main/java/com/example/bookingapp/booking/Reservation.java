@@ -3,6 +3,7 @@ package com.example.bookingapp.booking;
 import com.example.bookingapp.room.Room;
 import com.example.bookingapp.user.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,12 +33,14 @@ public class Reservation {
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
-    @Column(nullable = false)
+    @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
-    @Column(nullable = false)
+    @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
 
+    @NotBlank(message = "Topic field can't be empty")
     private String topic;
+    @NotBlank(message = "Context field can't be empty")
     private String context;
 }

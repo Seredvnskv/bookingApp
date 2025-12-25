@@ -4,12 +4,14 @@ import com.example.bookingapp.booking.Reservation;
 import com.example.bookingapp.booking.repository.ReservationRepository;
 import com.example.bookingapp.room.Room;
 import com.example.bookingapp.user.User;
+import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class ReservationService implements ReservationServiceInterface {
     private final ReservationRepository reservationRepository;
 
@@ -38,12 +40,12 @@ public class ReservationService implements ReservationServiceInterface {
     }
 
     @Override
-    public List<Reservation> findByDateRange(LocalDateTime start, LocalDateTime end) {
+    public List<Reservation> findByDateRange(LocalDate start, LocalDate end) {
         return reservationRepository.findByDateRange(start, end);
     }
 
     @Override
-    public Boolean isRoomAvailable(UUID id, LocalDateTime start, LocalDateTime end) {
+    public Boolean isRoomAvailable(UUID id, LocalDate start, LocalDate end) {
         return reservationRepository.isRoomAvailable(id, start, end);
     }
 
