@@ -2,7 +2,9 @@ package com.example.bookingapp.user;
 
 import com.example.bookingapp.user.enums.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,11 +31,13 @@ public class User {
     @NotBlank(message = "Lastname can't be empty")
     private String lastName;
 
-    @NotBlank(message = "Email field can't be empty")
+    @NotBlank(message = "Email can't be empty")
+    @Email(message = "Email requires to be in correct format")
     @Column(unique = true)
     private String email;
 
-    @NotBlank(message = "Password field can't be empty")
+    @NotBlank(message = "Password can't be empty")
+    @Size(min = 6, message = "Password has to be 6 characters long")
     private String password;
 
     @Enumerated(EnumType.STRING)
